@@ -2,7 +2,7 @@
 
 Welcome to this short course on the use of machine learning in seismology. The course is designed to give you a basic understanding of machine learning and how it can be used in seismology. It is not intended to be a comprehensive course on machine learning, but rather a short introduction to the topic.
 
-The dataset used in this practical can be downloaded __here (link will be updated soon, please check back tomorrow!!__. 
+The dataset used in this practical can be downloaded __here (link will be updated soon, please check back tomorrow!!__). 
 
 The present document is used for the hands-on part of the course. We will use Jupyter notebooks to run the code and to explore the data. Prior to the course, you should have installed the Anaconda Python distribution on your computer, with the following packages.
 
