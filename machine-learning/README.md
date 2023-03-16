@@ -2,7 +2,7 @@
 
 Welcome to this short course on the use of machine learning in seismology. The course is designed to give you a basic understanding of machine learning and how it can be used in seismology. It is not intended to be a comprehensive course on machine learning, but rather a short introduction to the topic.
 
-The dataset used in this practical can be downloaded __here (link will be updated soon, please check back tomorrow!!__). 
+The dataset used in this practical can be downloaded __here (link will be updated soon, please check back tomorrow!!__).
 
 The present document is used for the hands-on part of the course. We will use Jupyter notebooks to run the code and to explore the data. Prior to the course, you should have installed the Anaconda Python distribution on your computer, with the following packages.
 
@@ -10,11 +10,11 @@ The present document is used for the hands-on part of the course. We will use Ju
 
 First, you should create a clean Python environment. This can be done by opening a terminal and typing:
 
-    conda create --name spin
+    conda create --name spin-ml
 
-This will create an empty environment called `spin`. You can activate this environment by typing:
+This will create an empty environment called `spin-ml`. You can activate this environment by typing:
 
-    conda activate spin
+    conda activate spin-ml
 
 By default, we will be using the channel `conda-forge` to install the packages. This can be done by typing:
 
@@ -52,10 +52,12 @@ Then, follow the instructions described in the [Jupyter Lab documentation](https
 
 If you use VSCode, you can directly open the folder in which the Jupyter notebooks are located, and open it with the explorer. Note that running notebooks with VSCode require to install several extensions in VSCode. Please follow the instructions described in the [VSCode documentation](https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
 
-### Using other software
+### Using other software or converting to Python scripts
 
 You can also consider using other softwares to run the notebooks. For example, you can use [Google Colab](https://colab.research.google.com/) to run the notebooks in the cloud. You can also use [Binder](https://mybinder.org/) to run the notebooks in the cloud. Please refer to the documentation of these softwares to learn how to use them.
 
 The notebooks can also be converted to regular Python scripts to be run in a terminal. This can be done by typing:
 
     jupyter nbconvert --to script notebook_name.ipynb
+
+##
