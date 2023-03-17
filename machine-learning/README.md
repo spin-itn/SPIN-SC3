@@ -65,13 +65,15 @@ We will process several datasets during the practicals. We will tuse the MNIST d
 Once installed, you can pre-download the datasets by running the following code as a Python script, or in a Jupyter notebook, with definined a variable `DATA_DIRECTORY` to the path where you want to store the data:
 
 ```python
+import torchvision
+
 DATA_DIRECTORY = "./data"
 
 # Download the MNIST train dataset
 train_dataset = torchvision.datasets.MNIST(
     root=DATA_DIRECTORY,
     train=True,
-    transform=transforms.ToTensor(),
+    transform=torchvision.transforms.ToTensor(),
     download=True,
 )
 
@@ -79,7 +81,7 @@ train_dataset = torchvision.datasets.MNIST(
 test_dataset = torchvision.datasets.MNIST(
     root=DATA_DIRECTORY,
     train=False,
-    transform=transforms.ToTensor(),
+    transform=torchvision.transforms.ToTensor(),
     download=True,
 )
 ```
