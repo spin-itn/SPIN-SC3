@@ -4,19 +4,24 @@ Welcome to this short course on the use of machine learning in seismology. The c
 
 ## Contents
 
-- [Installation instructions](#installation-instructions)
-  - [Python packages](#python-packages)
-  - [Running the notebooks](#running-the-notebooks)
-- [Datasets](#datasets)
-  - [MNIST: handwritten digits](#mnist-handwritten-digits)
+- [1. Installation instructions](#1-installation-instructions)
+  - [1.1 Python packages](#11-python-packages)
+  - [1.2 PyTorch](#12-pytorch)
+  - [1.3 Seisbench](#13-seisbench)
+  - [1.4 Running the notebooks](#14-running-the-notebooks)
+- [2. Datasets download](#2-datasets-download)
+  - [2.1 MNIST: handwritten digits](#21-mnist-handwritten-digits)
+  - [2.3 Other seismic data](#23-other-seismic-data)
 
 The present document is used for the hands-on part of the course. We will use Jupyter notebooks to run the code and to explore the data. Prior to the course, you should have installed the Anaconda Python distribution on your computer, with the following packages.
 
-## Installation instructions
+## 1. Installation instructions
 
-### Python packages
+### 1.1 Regular Python packages
 
-First, you should create a clean Python environment. This can be done by opening a terminal and typing:
+The best way to work with Python is to use a package manager such as `conda` or `pip`. We will use `conda` in this course. The good idea with `conda` is that it allows to create isolated environments, which is very useful when working with different projects. Because Python packages are often updated, it is also a good idea to create a new environment for each project. This way, you can be sure that the packages you are using are the ones you want to use, and that they are compatible with each other.
+
+First, you should create a clean Python environment and name it after the course. This can be done by opening a terminal and typing:
 
     conda create --name spin-ml
 
@@ -24,25 +29,38 @@ This will create an empty environment called `spin-ml`. You can activate this en
 
     conda activate spin-ml
 
-By default, we will be using the channel `conda-forge` to install the packages. This can be done by typing:
+This will change your Python path and make sure that all the packages you install will be installed in this environment. By default, we will be using the channel `conda-forge` to install the packages. This can be done by typing:
 
     conda config --add channels conda-forge
 
-Now we will install the one-before-last Python version, as well as the packages we will be using in the course. This can be done by typing:
+The latest version of Python (3.11 in March 2023) may not be completely compatible with all the packages we will use. Therefore, we will use Python 3.9. This can be done by typing:
 
-    conda install python=3.10
+    conda install python=3.9
 
-Now we can install all the required packages. We will use primarily Numpy, Scipy, Pandas, Scikit-Learn and Matplotlib. We will also use Seaborn and PyTorch. This can be done by typing:
+Now we can install all (but one of) the required packages. We will use primarily Numpy, Scipy, Pandas, Scikit-Learn and Matplotlib. We will also use Seaborn and PyTorch. This can be done by typing:
 
-    conda install numpy scipy pandas scikit-learn matplotlib seaborn pytorch
+    conda install numpy scipy pandas scikit-learn matplotlib seaborn obspy
 
-<!-- We will also need to downlaod the model `PhaseNet` for the practical on earthquake seismic phase picking. To do so, we will use the `Seisbench` library which provides a convenient interface to download and process the data. This can be done by typing:
+### 1.2 PyTorch
 
-    pip install seisbench -->
+This Python package is one of the most popular deep learning libraries. It can both run on CPU or GPU. Because we are going ot work with our laptots here, we will use the CPU version. Several possibilities exist to install PyTorch, depending on your operating system. If the following commant fails, please refer to the [PyTorch documentation](https://pytorch.org/get-started/locally/) to install the package on your computer.
 
-### Running the notebooks
+    conda install pytorch torchvision -c pytorch
 
-All the practicals are in the form of Jupyter notebooks, which require further packages to be installed. This can be done by typing:
+### 1.3 Seisbench
+
+We will also use the Seisbench package, which is a Python package for the analysis of seismic data. This package is not yet available on the `conda-forge` channel. Therefore, we will install it with pip, as recommended in the [Seisbench documentation](https://seisbench.readthedocs.io/en/stable/pages/installation_and_usage.html).
+
+Note that it's safer to install it in a dedicated conda environment, as it may require to install other packages. In particular, the torch version may differ from the one you have installed in the previous step. Therefore, we will install it in a dedicated environment. This can be done by typing:
+
+    conda create --name seisbench
+    conda activate seisbench
+    conda install python
+    pip install torch==1.12.1 seisbench
+
+### 1.4 Running the notebooks
+
+All the practicals are in the form of Jupyter notebooks, which require further packages to be installed. In all environements, you can install the Jupyter package by typing:
 
     conda install jupyter
 
@@ -54,24 +72,23 @@ You now have several options to run the notebooks. One strategy is to use a dedi
 
 - __Using other software or converting to Python scripts__: You can also consider using other softwares to run the notebooks. For example, you can use [Google Colab](https://colab.research.google.com/) to run the notebooks in the cloud. You can also use [Binder](https://mybinder.org/) to run the notebooks in the cloud. Please refer to the documentation of these softwares to learn how to use them. The notebooks can also be converted to regular Python scripts to be run in a terminal. This can be done by typing `jupyter nbconvert --to script notebook_name.ipynb`.
 
-## Datasets
+## 2. Datasets download
 
-### MNIST: handwritten digits
+### 2.1 MNIST: handwritten digits
 
-We will process several datasets during the practicals. We will tuse the MNIST dataset, which contains 60,000 training images and 10,000 test images of handwritten digits. This dataset is available in the `torchvision` package. You can install this package by typing:
-
-    pip install torchvision
+We will process several datasets during the practicals. We will tuse the MNIST dataset, which contains 60,000 training images and 10,000 test images of handwritten digits. This dataset is available in the `torchvision` package installed in the section [1.1 Python packages](#11-python-packages).
 
 Once installed, you can pre-download the datasets by running the following code as a Python script, or in a Jupyter notebook, with definined a variable `DATA_DIRECTORY` to the path where you want to store the data:
 
 ```python
 import torchvision
 
-DATA_DIRECTORY = "./data"
+# Name the path where you want to store the data
+DIRPATH_DATA = "./data"
 
 # Download the MNIST train dataset
 train_dataset = torchvision.datasets.MNIST(
-    root=DATA_DIRECTORY,
+    root=DIRPATH_DATA,
     train=True,
     transform=torchvision.transforms.ToTensor(),
     download=True,
@@ -79,20 +96,29 @@ train_dataset = torchvision.datasets.MNIST(
 
 # Download the MNIST test dataset
 test_dataset = torchvision.datasets.MNIST(
-    root=DATA_DIRECTORY,
+    root=DIRPATH_DATA,
     train=False,
     transform=torchvision.transforms.ToTensor(),
     download=True,
 )
 ```
 
-### Seismic data
+### 2.2 Seismic data from the SeisBench package
 
-We will also understand and test several earthquake analysis deep learning models. Any seismic data you may want to bring (or already have) is welcome. If you wish to work on a dedicated seismic timeseries, we will download some from IRIS with ObsPy. You can install ObsPy by typing:
+We will also use the SeisBench package to download some seismic data. This package is already installed in the `seisbench` environment. After activating this environment, you can download the data by typing:
 
-    conda install obspy
+```python
+from seisbench.data import Iquique
 
-Then execute the following script from a terminal or a Jupyter notebook:
+# Download the data
+Iquique()
+```
+
+This will download the data in the `seisbench_data` folder in your home directory. You can change the path by defining the `SEISBENCH_DATA` environment variable. This dataset is about 4GB. Make sure you have the space available on your computer. We can also give the dataset with a USB stick if you prefer.
+
+### 2.3 Other seismic data
+
+We will also understand and test several earthquake analysis deep learning models. Any seismic data you may want to bring (or already have) is welcome. If you wish to work on a dedicated seismic timeseries, we will download some from IRIS with ObsPy. This can be done by typing:
 
 ```python
 from obspy.clients.fdsn import Client
