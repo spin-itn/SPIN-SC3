@@ -76,47 +76,31 @@ You now have several options to run the notebooks. One strategy is to use a dedi
 
 ### 2.1 MNIST: handwritten digits
 
-> __We finally decided to ship the MNIST dataset is shipped within this repository.__ It is located in the `data` folder.
-
-<!-- We will process several datasets during the practicals. We will tuse the MNIST dataset, which contains 60,000 training images and 10,000 test images of handwritten digits. This dataset is available in the `torchvision` package installed in the section [1.1 Python packages](#11-python-packages).
-
-Once installed, you can pre-download the datasets by running the following code as a Python script, or in a Jupyter notebook, with definined a variable `DATA_DIRECTORY` to the path where you want to store the data:
-
-```python
-import torchvision
-
-# Name the path where you want to store the data
-DIRPATH_DATA = "./data"
-
-# Download the MNIST train dataset
-train_dataset = torchvision.datasets.MNIST(
-    root=DIRPATH_DATA,
-    train=True,
-    transform=torchvision.transforms.ToTensor(),
-    download=True,
-)
-
-# Download the MNIST test dataset
-test_dataset = torchvision.datasets.MNIST(
-    root=DIRPATH_DATA,
-    train=False,
-    transform=torchvision.transforms.ToTensor(),
-    download=True,
-)
-``` -->
+> We decided to ship the MNIST dataset is shipped within this repository. It is located in the `data` folder.
 
 ### 2.2 Seismic data from the SeisBench package
 
 We will also use the SeisBench package to download some seismic data. This package is already installed in the `seisbench` environment. After activating this environment, you can download the data by typing:
 
 ``` python
+import seisbench
 from seisbench.data import Iquique
 
 # Download the data
+print(seisbench.cache_root)
 Iquique()
 ```
 
-This will download the data in the `seisbench_data` folder in your home directory. You can change the path by defining the `SEISBENCH_DATA` environment variable. This dataset is about 4GB. Make sure you have the space available on your computer. We can also give the dataset with a USB stick if you prefer.
+This will download the data in the `seisbench.cache_root` folder (usually in your home directory). You can change the path by defining the `SEISBENCH_DATA` environment variable. This dataset is about 4GB. Make sure you have the space available on your computer. We can also give the dataset with a USB stick if you prefer. If you go for this option,please contact me to get a USB stick. The data will be located in the `iquique` folder. You can copy this repository inside:
+
+    $SEISBENCH_CACHE_ROOT/datasets/
+
+where you have to replace `$SEISBENCH_CACHE_ROOT` by the path to the `seisbench` cache root that you can get from
+
+```python
+import seisbench
+print(seisbench.cache_root)
+```
 
 ### 2.3 Other seismic data
 
