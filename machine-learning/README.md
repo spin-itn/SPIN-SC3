@@ -5,7 +5,7 @@ Welcome to this short course on the use of machine learning in seismology. The c
 ## Contents
 
 - [1. Installation instructions](#1-installation-instructions)
-  - [1.1 Python packages](#11-python-packages)
+  - [1.1 Regular Python packages](#11-regular-python-packages)
   - [1.2 PyTorch](#12-pytorch)
   - [1.3 Seisbench](#13-seisbench)
   - [1.4 Running the notebooks](#14-running-the-notebooks)
@@ -109,7 +109,7 @@ test_dataset = torchvision.datasets.MNIST(
 
 We will also use the SeisBench package to download some seismic data. This package is already installed in the `seisbench` environment. After activating this environment, you can download the data by typing:
 
-```python
+``` python
 from seisbench.data import Iquique
 
 # Download the data
