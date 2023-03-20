@@ -11,6 +11,10 @@ The notebooks are deliberately simplistic, and the required Python packages shou
 - numpy
 - matplotlib
 - scipy
-- csv
 - numba
-- mpl_toolkits
+
+```
+>>> conda create -n spin_inverse python=3.10
+>>> conda activate spin_inverse
+>>> conda install scipy numpy matplotlib numba notebook
+```

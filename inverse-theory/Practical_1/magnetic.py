@@ -161,7 +161,7 @@ def prior_data(d_obs,d):
 	:param d: simulated data vector
 	"""
     
-    return np.exp(-0.5*norm(d-d_obs)**2/sigma_D**2)
+	return np.exp(-0.5*norm(d-d_obs)**2/sigma_D**2)
 
 
 #= Log Prior probability density in data space. ===================================================
