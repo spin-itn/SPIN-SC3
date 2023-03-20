@@ -76,7 +76,9 @@ You now have several options to run the notebooks. One strategy is to use a dedi
 
 ### 2.1 MNIST: handwritten digits
 
-We will process several datasets during the practicals. We will tuse the MNIST dataset, which contains 60,000 training images and 10,000 test images of handwritten digits. This dataset is available in the `torchvision` package installed in the section [1.1 Python packages](#11-python-packages).
+> __We finally decided to ship the MNIST dataset is shipped within this repository.__ It is located in the `data` folder.
+
+<!-- We will process several datasets during the practicals. We will tuse the MNIST dataset, which contains 60,000 training images and 10,000 test images of handwritten digits. This dataset is available in the `torchvision` package installed in the section [1.1 Python packages](#11-python-packages).
 
 Once installed, you can pre-download the datasets by running the following code as a Python script, or in a Jupyter notebook, with definined a variable `DATA_DIRECTORY` to the path where you want to store the data:
 
@@ -101,7 +103,7 @@ test_dataset = torchvision.datasets.MNIST(
     transform=torchvision.transforms.ToTensor(),
     download=True,
 )
-```
+``` -->
 
 ### 2.2 Seismic data from the SeisBench package
 
