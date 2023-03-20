@@ -39,7 +39,7 @@ The latest version of Python (3.11 in March 2023) may not be completely compatib
 
 Now we can install all (but one of) the required packages. We will use primarily Numpy, Scipy, Pandas, Scikit-Learn and Matplotlib. We will also use Seaborn and PyTorch. This can be done by typing:
 
-    conda install numpy scipy pandas scikit-learn matplotlib seaborn obspy
+    conda install numpy scipy pandas scikit-learn matplotlib seaborn obspy tqdm
 
 ### 1.2 PyTorch
 
@@ -55,7 +55,7 @@ Note that it's safer to install it in a dedicated conda environment, as it may r
 
     conda create --name seisbench
     conda activate seisbench
-    conda install python
+    conda install python=3.9
     pip install torch==1.12.1 seisbench
 
 ### 1.4 Running the notebooks
